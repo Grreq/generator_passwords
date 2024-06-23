@@ -3,7 +3,7 @@ from telebot import types
 import string
 import random
 
-TOKEN = "your-token-from-bot-father"
+TOKEN = "7072858424:AAGpYv0QSBVOUHxHUepRh7Nnt-g7pIBPmZE"
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -49,6 +49,7 @@ def return_commands(message):
 def file(message):
     link = "https://github.com/Grreq/generator_passwords/blob/main/importwtelebot.py"
     bot.send_message(message.chat.id, link)
+
 
 def back(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -265,26 +266,28 @@ def bot_message(message):
                 if characters[i]:
                     score += 1
             
-            text = "Only Latin letters can be used in the password"
+            text = "This password incorrect!"
+            text_excellent = "This password excellent (5/5)!"
             text_deficiency = f"This password is {score}/5"
-            if score == 5:
-                bot.send_message(message.chat.id, text_deficiency)
-            elif score < 5:
-                text_deficiency += "\nMissing:"
-                if upper_case == False:
-                    text_deficiency += "\nUpper Case (ABCD)"
-                if lower_case == False:
-                    text_deficiency += "\nLower Case (abcd)"
-                if special == False:
-                    text_deficiency += "\nSpecial characters (+-_!?*)"
-                if digits == False:
-                    text_deficiency += "\nDigits (1234)"
-                if check_length == False:
-                    text_deficiency += "\nLength < 10"
-                bot.send_message(message.chat.id, text_deficiency)
-            
-            elif score == 0:
+            if score == 0:
                 bot.send_message(message.chat.id, text)
+            elif score < 6 and score > 0:
+                if score == 5:
+                    bot.send_message(message.chat.id, text_excellent)
+                else:
+                    text_deficiency += "\nMissing:"
+                    if upper_case == False:
+                        text_deficiency += "\nUpper Case (ABCD)"
+                    if lower_case == False:
+                        text_deficiency += "\nLower Case (abcd)"
+                    if special == False:
+                        text_deficiency += "\nSpecial characters (+-_!?*)"
+                    if digits == False:
+                        text_deficiency += "\nDigits (1234)"
+                    if check_length == False:
+                        text_deficiency += "\nLength < 10"
+                    bot.send_message(message.chat.id, text_deficiency)
+                
                 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
