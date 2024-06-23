@@ -45,6 +45,11 @@ def return_commands(message):
     markup.row(item_gen_name_mail)
     bot.send_message(message.chat.id, text_menu, reply_markup=markup)
 
+@bot.message_handler(commands=['code'])
+def file(message):
+    link = "https://github.com/Grreq/generator_passwords/blob/main/importwtelebot.py"
+    bot.send_message(message.chat.id, link)
+
 def back(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     full_name = message.from_user.full_name
@@ -128,10 +133,6 @@ def security(message):
     item_back = types.KeyboardButton("Back⬅️")
     markup.add(item_Generate, item_security, item_back)
     bot.send_message(message.chat.id, text, reply_markup=markup)
-
-def file(message):
-    link = "https://github.com/Grreq/generator_passwords/blob/main/importwtelebot.py"
-    bot.send_message(message.chat.id, link)
 
 
 @bot.message_handler(content_types=['text'])
@@ -241,8 +242,6 @@ def bot_message(message):
             markup.row(item_generate, item_personal_password, item_security)
             markup.add(item_back)
             bot.send_message(message.chat.id, text, reply_markup=markup)
-        elif message.text == "админ9486":
-            file(message)
         else:
             length = random.randint(10, 16)
             password_message = message.text
