@@ -130,8 +130,8 @@ def security(message):
     bot.send_message(message.chat.id, text, reply_markup=markup)
 
 def file(message):
-    id = "1244894486"
-    bot.send_message(message.chat.id, message.id)
+    link = "https://github.com/Grreq/generator_passwords/blob/main/importwtelebot.py"
+    bot.send_message(message.chat.id, link)
 
 
 @bot.message_handler(content_types=['text'])
