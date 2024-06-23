@@ -258,33 +258,33 @@ def bot_message(message):
                 check_length = True
             else:
                 check_length = False
-                characters = [upper_case, lower_case, special, digits, check_length]
-                score = 0
+            characters = [upper_case, lower_case, special, digits, check_length]
+            score = 0
 
-                for i in range(len(characters)):
-                    if characters[i]:
-                        score += 1
-                
-                text = "Only Latin letters can be used in the password"
-                text_deficiency = f"This password is {score}/5"
-                if score == 5:
-                    bot.send_message(message.chat.id, text_deficiency)
-                elif score < 5:
-                    text_deficiency += "\nMissing:"
-                    if upper_case == False:
-                        text_deficiency += "\nUpper Case (ABCD)"
-                    if lower_case == False:
-                        text_deficiency += "\nLower Case (abcd)"
-                    if special == False:
-                        text_deficiency += "\nSpecial characters (+-_!?*)"
-                    if digits == False:
-                        text_deficiency += "\nDigits (1234)"
-                    if check_length == False:
-                        text_deficiency += "\nLength < 10"
-                    bot.send_message(message.chat.id, text_deficiency)
-                
-                elif score == 0:
-                    bot.send_message(message.chat.id, text)
+            for i in range(len(characters)):
+                if characters[i]:
+                    score += 1
+            
+            text = "Only Latin letters can be used in the password"
+            text_deficiency = f"This password is {score}/5"
+            if score == 5:
+                bot.send_message(message.chat.id, text_deficiency)
+            elif score < 5:
+                text_deficiency += "\nMissing:"
+                if upper_case == False:
+                    text_deficiency += "\nUpper Case (ABCD)"
+                if lower_case == False:
+                    text_deficiency += "\nLower Case (abcd)"
+                if special == False:
+                    text_deficiency += "\nSpecial characters (+-_!?*)"
+                if digits == False:
+                    text_deficiency += "\nDigits (1234)"
+                if check_length == False:
+                    text_deficiency += "\nLength < 10"
+                bot.send_message(message.chat.id, text_deficiency)
+            
+            elif score == 0:
+                bot.send_message(message.chat.id, text)
                 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
